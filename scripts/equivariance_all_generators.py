@@ -170,7 +170,7 @@ def synthetic_validation(n: int) -> dict[str, float]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cert-dir", type=Path, default=Path("data/stored_certificates"))
+    parser.add_argument("--cert-dir", type=Path, default=Path("results/massive_run/certificates"))
     parser.add_argument("--output-json", type=Path, default=Path("results/equivariance_all_generators.json"))
     parser.add_argument("--output-csv", type=Path, default=Path("results/equivariance_all_generators.csv"))
     parser.add_argument("--n", type=int, nargs="*", default=[5, 7, 9, 11, 13])

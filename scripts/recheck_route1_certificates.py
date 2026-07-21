@@ -26,10 +26,13 @@ Exit code 0 iff everything verifies.
 """
 
 import hashlib
+import argparse
+import argparse
 import json
 import math
 import sys
 from fractions import Fraction
+from pathlib import Path
 
 
 # ----------------------------------------------------------------- intervals
@@ -312,7 +315,10 @@ def cascade_solution_float(t_float):
 
 
 def main():
-    with open("route1_results.json") as fh:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", type=Path, default=Path("results/json/route1_results_full.json"))
+    args = parser.parse_args()
+    with args.input.open(encoding="utf-8") as fh:
         data = json.load(fh)
     certs = data["intervals"]
     n_total = len(certs)

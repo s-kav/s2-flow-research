@@ -12,6 +12,7 @@ For each NPZ certificate it:
 """
 from __future__ import annotations
 
+import argparse
 import glob
 import json
 import math
@@ -19,7 +20,6 @@ import math
 import networkx as nx
 import numpy as np
 
-CERT_DIR = "/home/claude/work/s2-flow-research/results/massive_run/certificates"
 TOL_NUMERICAL = 1e-7
 
 
@@ -32,7 +32,11 @@ def oriented_incidence_from_edges(n_nodes: int, edges: list[tuple[int, int]]) ->
 
 
 def main() -> None:
-    paths = sorted(glob.glob(f"{CERT_DIR}/*.npz"))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--certificate-dir", default="results/massive_run/certificates")
+    parser.add_argument("--output", default="results/massive_run/independent_check_summary.json")
+    args = parser.parse_args()
+    paths = sorted(glob.glob(f"{args.certificate_dir}/*.npz"))
     rows = []
     worst_cons = 0.0
     worst_norm = 0.0
@@ -108,7 +112,7 @@ def main() -> None:
         "max_unit_norm_residual": worst_norm,
     }
     print(json.dumps(summary, indent=2))
-    with open("/home/claude/work/independent_check_summary.json", "w") as f:
+    with open(args.output, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
     # Detail for the eight numerical certificates.
     print("\nNumerical (non-constructive) certificates:")

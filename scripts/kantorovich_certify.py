@@ -43,6 +43,7 @@ inequalities (floats are used only to produce the candidates y0 and A).
 """
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from fractions import Fraction
@@ -60,7 +61,7 @@ CERTS = [
     ("generalized_petersen_5_2", "00010_generalized_petersen_5_2.npz"),
     ("random_n18_seed2515491800", "00160_random_n18_seed2515491800.npz"),
 ]
-CERT_DIR = "/home/claude/work/s2-flow-research/results/massive_run/certificates"
+CERT_DIR = "results/massive_run/certificates"
 
 
 def integer_cycle_basis(n_nodes: int, edges: list[tuple[int, int]]) -> np.ndarray:
@@ -255,7 +256,7 @@ def main() -> None:
             f"r={res['radius']}, kappa<={res['kappa_upper'] if res['kappa_upper'] else float('nan'):.3e}, "
             f"cond(J)~{res['float_condition_number']:.2e}"
         )
-    with open("/home/claude/work/kantorovich_results.json", "w") as fh:
+    with open("results/massive_run/kantorovich_results.json", "w", encoding="utf-8") as fh:
         json.dump(results, fh, indent=2)
 
 

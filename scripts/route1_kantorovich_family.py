@@ -43,10 +43,12 @@ Output: route1_results.json with every subinterval and its constants.
 """
 
 import hashlib
+import argparse
 import json
 import math
 import time
 from fractions import Fraction
+from pathlib import Path
 
 import mpmath as mp
 import numpy as np
@@ -400,6 +402,9 @@ def certify_interval(t1: Fraction, t2: Fraction):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=Path("results/json/route1_results_full.json"))
+    args = parser.parse_args()
     t0 = time.time()
     results = []
     hi_units = T_STAR_UNITS
@@ -462,7 +467,8 @@ def main():
             "recheck_route1_certificates.py)."
         ),
     }
-    with open("route1_results.json", "w") as fh:
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with args.output.open("w", encoding="utf-8") as fh:
         json.dump({"summary": summary, "intervals": results}, fh, indent=1)
     print(json.dumps(summary, indent=2))
 
