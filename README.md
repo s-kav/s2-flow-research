@@ -1,6 +1,8 @@
 # Spherical Unit-Vector Flows on Cubic Graphs
 
-Proof, exact-certification, and reproducibility framework for the study of unit-vector flows on bridgeless cubic graphs, with complete results for Isaacs flower snarks and Goldberg snarks.
+[![DOI](https://zenodo.org/badge/1307368331.svg)](https://doi.org/10.5281/zenodo.21478983)
+
+Proof, exact-certification, and reproducibility research framework for the rigorous and reproducible study of spherical unit-vector flows on bridgeless cubic graphs, with complete results for Isaacs flower snarks and Goldberg snarks.
 
 ## Scope
 
@@ -504,6 +506,14 @@ Before creating the archival release:
 2. create a signed or annotated version tag;
 3. archive the tag through Zenodo or an equivalent service;
 4. add the resulting DOI to `CITATION.cff` and the manuscript.
+
+## References
+
+For citing you should use:
+
+Sergii Kavun. (2026). s-kav/s2-flow-research: Version 0.2.0 (v.0.2.0). Zenodo. https://doi.org/10.5281/zenodo.21478983
+
+[![DOI](https://zenodo.org/badge/1307368331.svg)](https://doi.org/10.5281/zenodo.21478983)
 
 ## Licence
 

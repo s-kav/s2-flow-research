@@ -2,11 +2,14 @@ cff-version: 1.2.0
 title: Spherical Unit Flows on Flower and Goldberg Snarks
 message: Please cite the associated article and this software release.
 type: software
+doi: 10.5281/zenodo.21478983
+url: https://github.com/s-kav/s2-flow-research
+repository-code: https://github.com/s-kav/s2-flow-research
+version: 0.2.0
+date-released: 2026-07-21
 authors:
   - family-names: Kavun
     given-names: Sergii
-version: 0.2.0
-date-released: 2026-07-21
 license: MIT
 keywords:
   - graph theory
