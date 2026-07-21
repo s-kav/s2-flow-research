@@ -1,0 +1,3 @@
+graph: flower:5
+dimensions: [3, 4]
+restarts: 24

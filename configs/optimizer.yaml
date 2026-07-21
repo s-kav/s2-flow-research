@@ -1,0 +1,3 @@
+method: cycle_space
+loss: unit_norm_residual
+solver: scipy_least_squares

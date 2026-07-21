@@ -1,0 +1,18 @@
+orders: [10, 12, 14, 16, 18, 20, 24, 30, 40]
+samples_per_order: 50
+seed: 20260718
+edge_coloring_max_nodes: 2000000
+nonlinear_restarts: 12
+nonlinear_max_nfev: 20000
+tolerance: 1.0e-8
+include_families: true
+flower_parameters: [5, 7, 9, 11, 13]
+generalized_petersen_parameters:
+  - [5, 2]
+  - [7, 2]
+  - [8, 3]
+  - [9, 2]
+  - [10, 2]
+  - [10, 3]
+  - [12, 5]
+  - [15, 4]

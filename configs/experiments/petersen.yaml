@@ -1,0 +1,3 @@
+graph: petersen
+dimensions: [2, 3, 4]
+restarts: 24

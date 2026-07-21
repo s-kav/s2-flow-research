@@ -1,0 +1,12 @@
+{
+  "bridges": 0,
+  "connected": true,
+  "cubic": true,
+  "edges": 12012,
+  "k": 1001,
+  "max_kirchhoff_residual": 1.0414781016765406e-13,
+  "max_reduced_residual": 8.881784197001252e-16,
+  "max_unit_norm_residual": 1.525446435834965e-13,
+  "scalar_root": 0.8317980890909772,
+  "vertices": 8008
+}

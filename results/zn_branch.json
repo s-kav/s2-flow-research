@@ -1,0 +1,192 @@
+[
+  {
+    "n": 5,
+    "branch_k": 1,
+    "theta": 1.2566370614359172,
+    "max_system_residual": 2.220446049250313e-16,
+    "kirchhoff_residual": 1.3877787807814457e-16,
+    "unit_norm_residual": 1.1102230246251565e-16,
+    "file": "data/equivariant_flows/flower_J5_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 7,
+    "branch_k": 1,
+    "theta": 0.8975979010256552,
+    "max_system_residual": 3.885780586188048e-16,
+    "kirchhoff_residual": 3.885780586188048e-16,
+    "unit_norm_residual": 2.220446049250313e-16,
+    "file": "data/equivariant_flows/flower_J7_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 9,
+    "branch_k": 1,
+    "theta": 0.6981317007977318,
+    "max_system_residual": 6.661338147750939e-16,
+    "kirchhoff_residual": 4.440892098500626e-16,
+    "unit_norm_residual": 3.3306690738754696e-16,
+    "file": "data/equivariant_flows/flower_J9_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 11,
+    "branch_k": 1,
+    "theta": 0.5711986642890533,
+    "max_system_residual": 2.220446049250313e-16,
+    "kirchhoff_residual": 2.220446049250313e-16,
+    "unit_norm_residual": 1.1102230246251565e-16,
+    "file": "data/equivariant_flows/flower_J11_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 13,
+    "branch_k": 1,
+    "theta": 0.483321946706122,
+    "max_system_residual": 2.220446049250313e-16,
+    "kirchhoff_residual": 2.220446049250313e-16,
+    "unit_norm_residual": 2.220446049250313e-16,
+    "file": "data/equivariant_flows/flower_J13_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 15,
+    "branch_k": 1,
+    "theta": 0.41887902047863906,
+    "max_system_residual": 8.881784197001252e-16,
+    "kirchhoff_residual": 4.996003610813204e-16,
+    "unit_norm_residual": 4.440892098500626e-16,
+    "file": "data/equivariant_flows/flower_J15_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 17,
+    "branch_k": 1,
+    "theta": 0.36959913571644626,
+    "max_system_residual": 4.440892098500626e-16,
+    "kirchhoff_residual": 2.220446049250313e-16,
+    "unit_norm_residual": 2.220446049250313e-16,
+    "file": "data/equivariant_flows/flower_J17_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 19,
+    "branch_k": 1,
+    "theta": 0.3306939635357677,
+    "max_system_residual": 6.661338147750939e-16,
+    "kirchhoff_residual": 5.551115123125783e-16,
+    "unit_norm_residual": 2.220446049250313e-16,
+    "file": "data/equivariant_flows/flower_J19_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 21,
+    "branch_k": 1,
+    "theta": 0.2991993003418851,
+    "max_system_residual": 1.4432899320127035e-15,
+    "kirchhoff_residual": 7.216449660063518e-16,
+    "unit_norm_residual": 7.771561172376096e-16,
+    "file": "data/equivariant_flows/flower_J21_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 23,
+    "branch_k": 1,
+    "theta": 0.2731819698773733,
+    "max_system_residual": 1.3322676295501878e-15,
+    "kirchhoff_residual": 8.881784197001252e-16,
+    "unit_norm_residual": 6.661338147750939e-16,
+    "file": "data/equivariant_flows/flower_J23_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 25,
+    "branch_k": 1,
+    "theta": 0.25132741228718347,
+    "max_system_residual": 1.1102230246251565e-15,
+    "kirchhoff_residual": 7.771561172376096e-16,
+    "unit_norm_residual": 5.551115123125783e-16,
+    "file": "data/equivariant_flows/flower_J25_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 27,
+    "branch_k": 1,
+    "theta": 0.23271056693257727,
+    "max_system_residual": 1.2212453270876722e-15,
+    "kirchhoff_residual": 6.661338147750939e-16,
+    "unit_norm_residual": 6.661338147750939e-16,
+    "file": "data/equivariant_flows/flower_J27_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 29,
+    "branch_k": 1,
+    "theta": 0.21666156231653746,
+    "max_system_residual": 8.881784197001252e-16,
+    "kirchhoff_residual": 6.661338147750939e-16,
+    "unit_norm_residual": 4.440892098500626e-16,
+    "file": "data/equivariant_flows/flower_J29_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 31,
+    "branch_k": 1,
+    "theta": 0.2026833970057931,
+    "max_system_residual": 8.881784197001252e-16,
+    "kirchhoff_residual": 4.440892098500626e-16,
+    "unit_norm_residual": 4.440892098500626e-16,
+    "file": "data/equivariant_flows/flower_J31_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 33,
+    "branch_k": 1,
+    "theta": 0.19039955476301776,
+    "max_system_residual": 8.881784197001252e-16,
+    "kirchhoff_residual": 8.326672684688674e-16,
+    "unit_norm_residual": 4.440892098500626e-16,
+    "file": "data/equivariant_flows/flower_J33_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 35,
+    "branch_k": 1,
+    "theta": 0.17951958020513104,
+    "max_system_residual": 4.440892098500626e-16,
+    "kirchhoff_residual": 4.440892098500626e-16,
+    "unit_norm_residual": 2.220446049250313e-16,
+    "file": "data/equivariant_flows/flower_J35_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 37,
+    "branch_k": 1,
+    "theta": 0.16981581911296179,
+    "max_system_residual": 9.992007221626409e-16,
+    "kirchhoff_residual": 5.551115123125783e-16,
+    "unit_norm_residual": 5.551115123125783e-16,
+    "file": "data/equivariant_flows/flower_J37_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 39,
+    "branch_k": 1,
+    "theta": 0.16110731556870733,
+    "max_system_residual": 1.3322676295501878e-15,
+    "kirchhoff_residual": 8.326672684688674e-16,
+    "unit_norm_residual": 6.661338147750939e-16,
+    "file": "data/equivariant_flows/flower_J39_zn_k1.npz",
+    "solved": true
+  },
+  {
+    "n": 41,
+    "branch_k": 1,
+    "theta": 0.15324842212633139,
+    "max_system_residual": 1.2212453270876722e-15,
+    "kirchhoff_residual": 4.996003610813204e-16,
+    "unit_norm_residual": 6.661338147750939e-16,
+    "file": "data/equivariant_flows/flower_J41_zn_k1.npz",
+    "solved": true
+  }
+]

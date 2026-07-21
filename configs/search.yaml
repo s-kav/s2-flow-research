@@ -1,0 +1,2 @@
+graphs: [petersen, flower:5]
+dimensions: [2, 3, 4, 7]

@@ -1,0 +1,23 @@
+{
+  "status": "proved",
+  "theorem": "For every odd n >= 5, no unit S^2-flow on the flower snark J_n can be equivariant under the full one-block automorphism of order 2n through a single orthogonal matrix Q in O(3).",
+  "scope": "all odd n >= 5",
+  "method": "exact orthogonal spectral decomposition and rational algebra",
+  "symbolic_check": {
+    "lambda_from_a_and_b": "1",
+    "c_planar_norm_squared": "1/4",
+    "c_axis_norm_squared": "3/4",
+    "d_axis_norm_squared": "3/16",
+    "d_planar_norm_squared": "13/16",
+    "forced_c_norm_squared": "25/16",
+    "contradiction_excess": "9/16"
+  },
+  "proof_outline": [
+    "Choose canonical orientations A_i=c_i->t_i, B_i=t_i->t_{i+1}, C_j=c_{j mod n}->w_j, and D_j=w_j->w_{j+1}.",
+    "Strict equivariance gives A_i=Q^i a, B_i=Q^i b, C_j=Q^j c, D_j=Q^j d with unit templates a,b,c,d.",
+    "Kirchhoff equations reduce exactly to a=(I-Q^{-1})b, c=(I-Q^{-1})d, and a+(I+Q^n)c=0, together with Q^n a=a, Q^n b=b, Q^{2n}c=c, Q^{2n}d=d.",
+    "If det(Q)=+1, Q is a rotation. Since b is not fixed by Q but is fixed by Q^n, Q^n=I. The hub equation becomes a+2c=0, contradicting |a|=|c|=1.",
+    "If det(Q)=-1 and n is odd, decompose R^3=P plus L, where Q is a planar rotation on P and -1 on L. Q^n b=b forces b in P and Q^n|P=I. Writing lambda=4 sin^2(theta/2), the first Kirchhoff equation and unit norms force lambda=1.",
+    "The hub equation gives |c_P|^2=1/4 and |c_L|^2=3/4. Because c=(I-Q^{-1})d, this forces |d_L|^2=3/16 and |d_P|^2=13/16. Hence |c|^2=lambda*13/16+4*3/16=25/16, contradiction."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "diagnostics": {
+    "bridgeless": true,
+    "bridges": [],
+    "connected": true,
+    "cubic": true,
+    "cycle_rank": 6,
+    "edges": 15,
+    "simple": true,
+    "vertices": 10
+  },
+  "dimension": 3,
+  "graph": "petersen",
+  "metrics": {
+    "gram_min_eigenvalue": -5.223534493738275e-16,
+    "gram_rank": 3,
+    "max_bq_residual": 6.661338147750939e-16,
+    "max_conservation_residual": 5.551115123125783e-16,
+    "max_gram_diagonal_residual": 1.0898254743096913e-08,
+    "max_unit_norm_residual": 5.449127371548457e-09,
+    "valid": true
+  },
+  "solver": {
+    "cost": 2.9001705193106165e-16,
+    "nfev": 34
+  }
+}

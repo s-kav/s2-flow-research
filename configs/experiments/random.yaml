@@ -1,0 +1,3 @@
+graph: random:20:1
+dimensions: [3]
+restarts: 16

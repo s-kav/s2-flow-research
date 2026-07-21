@@ -1,0 +1,5 @@
+seed: 20260717
+dimension: 3
+restarts: 12
+max_nfev: 20000
+tolerance: 1.0e-8

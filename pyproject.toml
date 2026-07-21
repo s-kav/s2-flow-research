@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "s2-flow-research"
+version = "0.1.0"
+description = "Reproducible computational research framework for S2-flows on bridgeless cubic graphs"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "networkx>=3.1", "PyYAML>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.5", "mypy>=1.10"]
+plot = ["matplotlib>=3.7"]
+sdp = ["cvxpy>=1.4"]
+symbolic = ["sympy>=1.12"]
+report = ["matplotlib>=3.7", "pandas>=2.0", "python-docx>=1.1"]
+
+[project.scripts]
+s2flow = "s2flow.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

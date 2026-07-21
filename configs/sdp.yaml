@@ -1,0 +1,4 @@
+enabled: false
+solver: SCS
+eps: 1.0e-6
+max_iters: 50000

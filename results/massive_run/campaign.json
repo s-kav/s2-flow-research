@@ -1,0 +1,79 @@
+{
+  "config": {
+    "edge_coloring_max_nodes": 2000000,
+    "flower_parameters": [
+      5,
+      7,
+      9,
+      11,
+      13
+    ],
+    "generalized_petersen_parameters": [
+      [
+        5,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        9,
+        2
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        12,
+        5
+      ],
+      [
+        15,
+        4
+      ]
+    ],
+    "include_families": true,
+    "nonlinear_max_nfev": 20000,
+    "nonlinear_restarts": 16,
+    "orders": [
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      24,
+      30,
+      40
+    ],
+    "samples_per_order": 30,
+    "seed": 20260718,
+    "tolerance": 1e-08
+  },
+  "elapsed_seconds": 23.214785562999964,
+  "environment": {
+    "networkx": "3.6.1",
+    "numpy": "2.3.5",
+    "platform": "Linux-4.4.0-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, May  5 2026, 21:05:52) [GCC 14.2.0]",
+    "scipy": "1.17.0"
+  },
+  "exact_constructive_certificates": 280,
+  "failure_records": [],
+  "failures": 0,
+  "instances": 288,
+  "maximum_conservation_residual": 2.1649348980190553e-15,
+  "maximum_unit_norm_residual": 7.794372636205082e-08,
+  "nonlinear_certificates": 8,
+  "valid_certificates": 288
+}

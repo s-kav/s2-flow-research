@@ -1,0 +1,15 @@
+For every odd n >= 5, no unit S^2-flow on the flower snark J_n can be equivariant under the full one-block automorphism of order 2n through a single orthogonal matrix Q in O(3).
+Exact contradiction verified: 25/16 != 1
+Saved results/strict_ansatz_exact.json
+Validated 38 generators
+JSON: results/equivariance_all_generators.json
+CSV:  results/equivariance_all_generators.csv
+Verified 19 exact dyadic certificates
+Saved results/independent_exact_verification.json
+...                                                                      [100%]
+3 passed in 1.63s
++ /opt/pyvenv/bin/python scripts/strict_ansatz_exact.py
++ /opt/pyvenv/bin/python scripts/equivariance_all_generators.py
++ /opt/pyvenv/bin/python scripts/verify_exact_certificates.py
++ /opt/pyvenv/bin/python -m pytest -q
+All exact, numerical, and regression checks passed.
