@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "s2-flow-research"
-version = "0.1.0"
-description = "Reproducible computational research framework for S2-flows on bridgeless cubic graphs"
+version = "0.2.0"
+description = "Proof and reproducibility package for S2-flows on flower and Goldberg snarks"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.24", "scipy>=1.10", "networkx>=3.1", "PyYAML>=6.0"]

@@ -1,36 +1,34 @@
-# Package contents
+# Package Contents
 
-## Main mathematical report
+## Primary deliverables
 
-- `docs/S2_flow_partial_theorems_and_structural_lemmas_ru.docx`
+- `RUNBOOK.md`: complete execution catalogue with outputs and proof status.
+- `REPOSITORY_AUDIT.md`: structure review, corrections, and release recommendations.
+- `manuscript/S2_Flows_Flower_Goldberg_Snarks.docx`: English journal manuscript.
+- `manuscript/S2_Flows_Flower_Goldberg_Snarks_Supplementary.docx`: English supplementary material.
+- `manuscript/latex/main.tex`: LaTeX source for the main manuscript.
+- `manuscript/latex/supplementary.tex`: LaTeX source for the supplementary material.
+- `manuscript/latex/main.pdf` and `supplementary.pdf`: compiled LaTeX previews.
 
-The report gives complete proofs for the project-level partial theorems and
-structural lemmas, explicitly separates known results from project-derived
-results, and states that the universal S²-flow conjecture remains open.
+## Mathematical implementations
 
-## Reproducibility code
+- `scripts/stage2_reduced.py` and `verify_route2_algebra.py`: flower-snark analytic reduction and verification.
+- `src/goldberg_s2/`: Goldberg construction, scalar reduction, exact interval arithmetic, and full-graph verification.
+- `certificates/`: exact interval and dyadic certificates.
+- `src/s2flow/proof/`: structural lemmas, symbolic tools, certificate interfaces, and search infrastructure.
 
-- `src/s2flow/proof/theory/`: exact constructive and structural algorithms.
-- `src/s2flow/computation/`: deterministic large-scale campaign orchestration.
-- `scripts/massive_verification.py`: sampled and named graph campaign.
-- `scripts/verify_campaign.py`: independent certificate verifier.
-- `scripts/nauty_cubic_campaign.py`: streaming graph6 input from nauty `geng`.
-- `scripts/build_partial_results_report.py`: report and figure regeneration.
-- `tests/`: unit and regression tests.
+## Reproducibility infrastructure
 
-## Stored campaign
+- `scripts/reproduce_project.py`: combined theorem reproduction.
+- `scripts/reproduce_all.py`: Goldberg theorem reproduction.
+- `scripts/verify_all.py`: consolidated flower and regression checks.
+- `.github/workflows/ci.yml`: continuous-integration checks.
+- `tests/`: 28 automated tests in the reviewed environment.
+- `requirements.txt`, `requirements-dev.txt`, `pyproject.toml`, and `uv.lock`: environment definitions.
 
-- `results/massive_run/campaign.json`
-- `results/massive_run/summary.csv`
-- `results/massive_run/certificates/*.npz`
+## Provenance and historical material
 
-The bundled campaign contains 288 certificates, of which 280 are constructed
-from proper 3-edge-colourings and 8 are numerical cycle-space certificates.
-The independent verifier accepts all 288 under the documented tolerance.
-
-## Research support layer
-
-The broader `src/s2flow/proof/` hierarchy includes candidate lemma checks,
-reduction search, symbolic polynomial systems, and certificate utilities. These
-modules are research tools, not machine-checked proofs of the universal
-conjecture.
+- `docs/`: theorem reports and development documents.
+- `source_notes/`: supplied source notes.
+- `legacy/`: original monolithic implementation.
+- `archive/`: superseded metadata and the original conflicted licence retained for auditability.

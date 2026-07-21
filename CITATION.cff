@@ -1,7 +1,15 @@
 cff-version: 1.2.0
-title: S2-Flow Research
-message: Please cite this software if it supports published work.
+title: Spherical Unit Flows on Flower and Goldberg Snarks
+message: Please cite the associated article and this software release.
 type: software
-version: 0.1.0
-date-released: 2026-07-17
+authors:
+  - family-names: Kavun
+    given-names: Sergii
+version: 0.2.0
+date-released: 2026-07-21
 license: MIT
+keywords:
+  - graph theory
+  - snarks
+  - unit-vector flows
+  - reproducible research
