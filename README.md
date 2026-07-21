@@ -1,71 +1,82 @@
-# S²-Flow Research
+# S²-Flows on Goldberg Snarks
 
-Reproducible computational framework for finite-instance investigation of the S²-flow conjecture: every bridgeless cubic graph should admit unit vectors on oriented edges satisfying Kirchhoff balance at every vertex.
+This repository contains a reproducible proof of the following family theorem:
 
-This repository does not claim a proof. It provides independently checkable numerical candidates, exact structural checks, rank/Gram diagnostics, graph generators, experiment orchestration, and certificate export.
+> **Theorem.** Every Goldberg snark `G_k`, for odd `k >= 5`, admits an `S²`-flow.
+
+The proof is constructive and uses a non-fundamental cyclic representation. The block shift is represented by the rotation
+
+```text
+phi_k = pi - pi/k = 2*pi*((k-1)/2)/k,
+```
+
+so the representation closes after `k` blocks. The original fundamental-angle attempt `phi = 2*pi/k` cannot work for `k >= 7`: the `v5^t-v5^(t+1)` channel would require a unit chord whose maximum possible length is `2*sin(pi/k) < 1`.
+
+The corrected equivariant system has twelve free edge orbits. A reflection-symmetric template reduction converts the `36 x 36` system to one scalar equation `H(s, x) = 0`, where
+
+```text
+x = tan(pi/(2k)),  0 < x <= tan(pi/10) < 13/40.
+```
+
+Exact rational interval arithmetic proves, uniformly on `x in [0, 13/40]`, that
+
+```text
+H(2/3, x) < 0,
+H(21/25, x) > 0,
+partial H / partial s > 0 on [2/3, 21/25].
+```
+
+Therefore a unique root exists for every admissible `x`; the root defines all twelve unit templates and hence the full flow on `G_k`.
+
+## Repository contents
+
+- `src/goldberg_s2/graph.py`: exact Goldberg graph and cyclic orbit construction.
+- `src/goldberg_s2/algebra.py`: scalar reduction.
+- `src/goldberg_s2/construction.py`: explicit twelve-template flow.
+- `src/goldberg_s2/verify.py`: independent reduced and full-graph verification.
+- `src/goldberg_s2/interval.py`: exact rational interval arithmetic.
+- `src/goldberg_s2/interval_proof.py`: endpoint and monotonicity certificate.
+- `certificates/interval_proof_certificate.json`: complete exact interval certificate.
+- `certificates/numerical_sweep.csv`: finite regression sweep for odd `k <= 1001`.
+- `docs/Goldberg_Snarks_S2_Flow_Theorem_en.docx`: English theorem report.
 
 ## Installation
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-python -m pip install -U pip
-python -m pip install -e ".[dev]"
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+python -m pip install -e .
 ```
 
-## Quick start
+On Windows PowerShell, activate with:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+## Reproduce the exact proof
 
 ```bash
-s2flow analyze --graph petersen --dimension 3 --restarts 12 --output results/json/petersen.json
-pytest
+python scripts/run_interval_proof.py
+python scripts/verify_interval_certificate.py
+```
+
+The verifier recomputes every interval enclosure using integers and exact rational arithmetic. Floating-point arithmetic is not used for the decisive sign and derivative checks.
+
+## Run the finite numerical sweep
+
+```bash
+python scripts/run_numerical_sweep.py --max-k 1001 --full-max-k 301
+python scripts/verify_one.py 1001
+```
+
+## Run everything
+
+```bash
 python scripts/reproduce_all.py
 ```
 
-## Mathematical checks
+## Scope
 
-For an oriented incidence matrix `B` and edge-vector matrix `X`, a candidate is accepted only when both conditions hold numerically:
-
-- `B @ X = 0`
-- every row of `X` has Euclidean norm `1`
-
-The framework additionally verifies the Gram matrix `Q = X Xᵀ`, its numerical rank, positive semidefiniteness, diagonal constraints, and `B Q = 0`.
-
-## Repository policy
-
-Numerical success is evidence for a finite graph only. Numerical failure is inconclusive. Any claimed certificate must be rechecked with `s2flow verify`.
-
-
-## Proof research layer
-
-The package now includes `src/s2flow/proof/` with executable candidate-lemma checks, bounded counterexample search, symbolic polynomial formulations, and independently verifiable certificate manifests. These modules support finite experiments and proof development; they do not claim a proof of the open S²-flow conjecture.
-
-## Rigorous partial results and large-scale verification
-
-The package now contains constructive and structural results in
-`src/s2flow/proof/theory/`:
-
-- exact S2-flow construction from a proper 3-edge-colouring;
-- cut-sum, two-cut antipodality, and three-cut equilateral rigidity checks;
-- canonical two-cut and three-cut closures used by the factorisation theorems;
-- rank-three PSD cycle-space certificate verification.
-
-Run the deterministic campaign:
-
-```bash
-python scripts/massive_verification.py \
-  --orders 10 12 14 16 18 20 24 30 40 \
-  --samples-per-order 50 \
-  --output-dir results/massive
-
-python scripts/verify_campaign.py results/massive
-```
-
-For exhaustive nauty input:
-
-```bash
-geng -c -d3 -D3 16 | \
-  python scripts/nauty_cubic_campaign.py --output-dir results/geng16
-```
-
-A successful finite campaign is evidence and provides independently checkable
-certificates. It is not a proof of the universal S2-flow conjecture.
+This theorem proves the `S²`-flow conjecture for the complete infinite family of Goldberg snarks. It does not prove the universal conjecture for all bridgeless cubic graphs.
