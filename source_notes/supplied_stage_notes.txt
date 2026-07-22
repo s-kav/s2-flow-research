@@ -286,7 +286,7 @@ for k in (7, 9, 11, 15, 21, 41, 101):
         except: pass
     print(f"G_{k:5d}: residual = {best:.2e}  [{'OK' if best<1e-10 else 'FAIL'}]")
     if best < 1e-10: prev = xbest
-PYEOF
+
 Output
 
 G_5 residual: 1.11e-16
@@ -294,13 +294,6 @@ Jacobian at solution: shape (36, 36), rank 35, smallest sv: [3.13241415e-01 1.70
   → system has 1 gauge freedoms
 G_5 with gauge: 2.22e-16
 
-
-
-продолжай
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
 
 
 

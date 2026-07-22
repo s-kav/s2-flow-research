@@ -59,7 +59,7 @@ def make_figures() -> tuple[Path, Path, Path]:
     df = pd.read_csv(RESULTS / 'summary.csv')
     counts = df['method'].value_counts()
     fig, ax = plt.subplots(figsize=(7.2, 4.5))
-    labels = [''Exact Construction\nfrom 3-Coloring', 'Nonlinear Search\nin the Space of Cycles'']
+    labels = ['Exact Construction\nfrom 3-Coloring', 'Nonlinear Search\nin the Space of Cycles']
     values = [int(counts.get('exact_three_edge_colouring_construction', 0)), int(counts.get('cycle_space_nonlinear_least_squares', 0))]
     bars = ax.bar(labels, values)
     ax.set_ylabel('Number of graphs')
@@ -250,108 +250,108 @@ def build_doc() -> None:
     add_equation(doc, 'Σₑ ε(v,e) φ(e) = 0 for every v∈V, ||φ(e)||₂ = 1 for every e∈E.')
     add_body(doc, 'Jains conjecture states that every bridgeless graph, and equivalently every bridgeless cubic graph, admits such a flow. As of July As of 2026, the conjecture remains open. Houdrouge, Miraftab, and Morin (2026) provided a geometric equivalence via equiangular spherical immersions, a one-sided composition theorem, preservation under triangle inflation, and explicit quasi-Petersen families. Mattiolo et al. (2023) captures the general higher-dimensional context and a known universal bound in higher dimensions.')
 
-    doc.add_heading('3. Статус новизны', level=1)
+    doc.add_heading('3. Novelty Status', level=1)
     table = doc.add_table(rows=1, cols=3)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     table.style = 'Table Grid'
-    headers = ['Результат', 'Статус', 'Комментарий']
+    headers = ['Result', 'Status', 'Comment']
     for i, h in enumerate(headers):
         set_cell_text(table.rows[0].cells[i], h, bold=True)
         shade_cell(table.rows[0].cells[i], 'D9EAF7')
     novelty_rows = [
-        ('Геометрическая характеризация S²-потока', 'Известно', 'Houdrouge, Miraftab, Morin, 2026.'),
-        ('Композиция двух графов с потоками', 'Известно', 'Односторонняя теорема 17 в работе 2026 года.'),
-        ('Раздувание вершины в треугольник', 'Известно в прямую сторону', 'Теорема 19 в работе 2026 года.'),
-        ('Точная 2-cut факторизация', 'Получено в проекте', 'Полное доказательство приведено ниже; точный приоритет не гарантируется.'),
-        ('Точная 3-cut факторизация и обратная композиция', 'Получено в проекте', 'Усиливает одностороннюю композицию до эквивалентности.'),
-        ('Инвариантность при triangle blow-up', 'Получено в проекте', 'Обратное направление следует из 3-cut факторизации.'),
-        ('Явный поток из 3-edge-colouring', 'Полный частный результат', 'Следует также из общего принципа цикл-покрытий; здесь дана автономная конструкция.'),
-        ('Редукция минимального контрпримера', 'Получено как следствие', 'Циклическая 4-связность и отсутствие треугольников.')
+        ('Geometric characterisation of S²-flow', 'Known', 'Houdrouge, Miraftab, Morin, 2026.'),
+        ('Composition of two graphs with flows', 'Known', 'One-directional Theorem 17 in the 2026 paper.'),
+        ('Vertex blow-up into a triangle', 'Known in the forward direction', 'Theorem 19 in the 2026 paper.'),
+        ('Exact 2-cut factorization', 'Obtained in project', 'Full proof given below; exact priority not guaranteed.'),
+        ('Exact 3-cut factorization and reverse composition', 'Obtained in project', 'Strengthens the one-directional composition to an equivalence.'),
+        ('Invariance under triangle blow-up', 'Obtained in project', 'Reverse direction follows from 3-cut factorization.'),
+        ('Explicit flow from 3-edge-colouring', 'Complete special case', 'Also follows from the general cycle-cover principle; a self-contained construction is given here.'),
+        ('Minimal counterexample reduction', 'Obtained as a corollary', 'Cyclic 4-edge-connectivity and absence of triangles.')
     ]
     for row in novelty_rows:
         cells = table.add_row().cells
         for i, value in enumerate(row):
             set_cell_text(cells[i], value, size=8.5)
 
-    doc.add_heading('4. Базовые структурные леммы', level=1)
-    add_theorem(doc, 'Лемма 1. Закон рёберного разреза.', 'Для любого множества вершин U⊂V и любого S²-потока сумма векторов на рёбрах δ(U), подписанных наружу из U, равна нулю.', [
-        'Просуммируем законы Кирхгофа по всем вершинам U. Каждое внутреннее ребро имеет два конца в U и входит в сумму дважды с противоположными знаками, поэтому сокращается. Остаются только рёбра δ(U), каждое ровно один раз с наружным знаком. Их сумма равна нулю.'
+    doc.add_heading('4. Basic Structural Lemmas', level=1)
+    add_theorem(doc, 'Lemma 1. Edge-cut law.', 'For any vertex set U⊂V and any S²-flow, the sum of edge vectors on δ(U) signed outward from U is zero.', [
+        'Sum the Kirchhoff laws over all vertices in U. Each internal edge has both endpoints in U and appears twice with opposite signs, so it cancels. Only the edges of δ(U) remain, each once with the outward sign. Their sum is zero.'
     ])
-    add_theorem(doc, 'Лемма 2. Жёсткость единичной тройки.', 'Если u,v,w∈R³, ||u||=||v||=||w||=1 и u+v+w=0, то u·v=v·w=w·u=-1/2. Следовательно, три вектора лежат в одной плоскости и образуют углы 2π/3.', [
-        'Из w=-(u+v) и ||w||²=1 получаем 1=||u+v||²=2+2u·v, откуда u·v=-1/2. Циклическая перестановка даёт два остальных равенства. Линейная зависимость u+v+w=0 обеспечивает компланарность.'
+    add_theorem(doc, 'Lemma 2. Rigidity of a unit triple.', 'If u,v,w∈R³, ||u||=||v||=||w||=1 and u+v+w=0, then u·v=v·w=w·u=-1/2. Consequently, the three vectors are coplanar and form mutual angles 2π/3.', [
+        'From w=-(u+v) and ||w||²=1 we get 1=||u+v||²=2+2u·v, hence u·v=-1/2. Cyclic permutation gives the other two equalities. The linear dependence u+v+w=0 ensures coplanarity.'
     ])
-    add_body(doc, 'Следствие. На 2-рёберном разрезе два наружных единичных вектора равны p и -p. На 3-рёберном разрезе наружные векторы образуют единственную с точностью до ортогонального преобразования равностороннюю тройку.')
+    add_body(doc, 'Corollary. Across a 2-edge cut the two outward unit vectors are p and -p. Across a 3-edge cut the outward vectors form an equilateral triple, unique up to an orthogonal transformation.')
     doc.add_picture(str(cut_fig), width=Inches(6.7))
-    cap = doc.add_paragraph('Рисунок 1. Канонические интерфейсы 2- и 3-рёберных разрезов.')
+    cap = doc.add_paragraph('Figure 1. Canonical interfaces of 2- and 3-edge cuts.')
     cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
     cap.runs[0].italic = True
 
-    doc.add_heading('5. Точная факторизация по малым разрезам', level=1)
-    add_theorem(doc, 'Теорема 3. Точная факторизация по 2-рёберному разрезу.', 'Пусть G - бесмостовый кубический граф и δ(A)={a₁b₁,a₂b₂} - нетривиальный 2-рёберный разрез, где aᵢ∈A и bᵢ∉A. Построим G_A, удалив разрез и добавив ребро a₁a₂; аналогично построим G_B. Тогда G имеет S²-поток тогда и только тогда, когда G_A и G_B имеют S²-потоки.', [
-        'Необходимость. Пусть φ - поток на G. Подпишем два граничных вектора наружу из A как p₁ и p₂. По Лемме 1 p₁+p₂=0. После удаления разреза добавим ребро a₁a₂ и ориентируем его так, чтобы его вклады в a₁ и a₂ были соответственно p₁ и p₂. Это возможно, поскольку p₂=-p₁ и ||p₁||=1. Во всех остальных вершинах уравнения не меняются. Получен поток на G_A. То же построение применяется к B.',
-        'Достаточность. Пусть на G_A и G_B заданы потоки. Замыкающие рёбра несут единичные векторы x и y. Применим ко всему потоку на G_B ортогональное преобразование Q, переводящее y в x или -x в соответствии с выбранным попарным соединением концов. Удалим замыкающие рёбра и восстановим два рёбра разреза, присвоив им x с ориентациями, воспроизводящими прежние вклады в четыре граничные вершины. На остальных вершинах баланс сохранён, а на граничных вклады совпадают с удалёнными замыкающими рёбрами.'
+    doc.add_heading('5. Exact Factorization at Small Cuts', level=1)
+    add_theorem(doc, 'Theorem 3. Exact factorization at a 2-edge cut.', 'Let G be a bridgeless cubic graph and δ(A)={a₁b₁,a₂b₂} a non-trivial 2-edge cut, with aᵢ∈A and bᵢ∉A. Form G_A by removing the cut and adding edge a₁a₂; form G_B analogously. Then G has an S²-flow if and only if both G_A and G_B have S²-flows.', [
+        'Necessity. Let φ be a flow on G. Label the two boundary vectors outward from A as p₁ and p₂. By Lemma 1, p₁+p₂=0. After removing the cut, add edge a₁a₂ and orient it so that its contributions at a₁ and a₂ are p₁ and p₂ respectively. This is possible since p₂=-p₁ and ||p₁||=1. Kirchhoff equations at all remaining vertices are unchanged. The result is a flow on G_A. The same construction applies to B.',
+        'Sufficiency. Let flows be given on G_A and G_B. The closure edges carry unit vectors x and y. Apply an orthogonal transformation Q to the entire flow on G_B, mapping y to x or -x according to the chosen pairing of endpoints. Remove the closure edges and restore the two cut edges, assigning them x with orientations reproducing the former contributions at the four boundary vertices. At all other vertices conservation is maintained; at the boundary vertices the contributions match the removed closure edges.'
     ])
-    add_theorem(doc, 'Теорема 4. Точная факторизация по нетривиальному 3-рёберному разрезу.', 'Пусть δ(A)={aᵢbᵢ: i=1,2,3}. Замкнём сторону A новой вершиной z_A, соединённой с a₁,a₂,a₃; аналогично построим G_B. Тогда G имеет S²-поток тогда и только тогда, когда G_A и G_B имеют S²-потоки.', [
-        'Необходимость. Наружные из A граничные векторы p₁,p₂,p₃ удовлетворяют p₁+p₂+p₃=0. Добавим новую вершину z_A и три ребра z_Aaᵢ так, чтобы вклад нового ребра в aᵢ был pᵢ. В z_A сумма вкладов равна -(p₁+p₂+p₃)=0. Нормы равны единице. Аналогично замыкается сторона B.',
-        'Достаточность. В потоках на G_A и G_B тройки векторов при новых вершинах являются равносторонними по Лемме 2. Для любой заданной биекции между тремя граничными рёбрами существует ортогональное преобразование Q∈O(3), переводящее упорядоченную тройку одной стороны в противоположную тройку другой. Применим Q ко всему потоку на G_B, удалим z_A,z_B и соединим соответствующие граничные вершины. Новые рёбра воспроизводят удалённые вклады, поэтому закон Кирхгофа сохраняется.'
+    add_theorem(doc, 'Theorem 4. Exact factorization at a non-trivial 3-edge cut.', 'Let δ(A)={aᵢbᵢ: i=1,2,3}. Close side A with a new vertex z_A connected to a₁,a₂,a₃; construct G_B analogously. Then G has an S²-flow if and only if both G_A and G_B have S²-flows.', [
+        'Necessity. The outward boundary vectors p₁,p₂,p₃ from A satisfy p₁+p₂+p₃=0. Add a new vertex z_A and three edges z_Aaᵢ so that the contribution of the new edge at aᵢ is pᵢ. At z_A the sum of contributions equals -(p₁+p₂+p₃)=0. All norms equal one. Side B is closed analogously.',
+        'Sufficiency. In the flows on G_A and G_B, the vector triples at the new vertices are equilateral by Lemma 2. For any given bijection between the three boundary edges there exists an orthogonal transformation Q∈O(3) mapping the ordered triple of one side to the opposite triple of the other. Apply Q to the entire flow on G_B, remove z_A,z_B, and connect the corresponding boundary vertices. The new edges reproduce the removed contributions, so Kirchhoff conservation is preserved.'
     ])
-    add_body(doc, 'Лемма о бесмостовости замыканий. Если исходный G бесмостов, то канонические замыкания нетривиальных 2- и 3-разрезов также бесмостовы. Действительно, внутреннее ребро, являющееся мостом замыкания, отделяло бы компоненту без граничных терминалов и было бы мостом исходного графа; новое замыкающее ребро или ребро к новой вершине не может быть мостом, поскольку соответствующий терминал имеет внутренний путь к остальным терминалам, иначе исходное разрезное ребро было бы мостом.')
+    add_body(doc, 'Lemma (Bridgelessness of closures). If the original G is bridgeless, then the canonical closures of non-trivial 2- and 3-cuts are also bridgeless. Indeed, an internal edge that is a bridge of a closure would separate a component with no boundary terminals and would therefore be a bridge of the original graph; a new closure edge or an edge to a new vertex cannot be a bridge, because the corresponding terminal has an internal path to the other terminals, otherwise the original cut edge would be a bridge.')
 
-    doc.add_heading('6. Усиления композиционных результатов', level=1)
-    add_theorem(doc, 'Следствие 5. Обратимость инъекции.', 'Пусть H▷G получен инъекцией кубического графа H в вершину кубического графа G. Тогда H▷G имеет S²-поток тогда и только тогда, когда оба графа H и G имеют S²-потоки.', [
-        'Прямое направление совпадает с известной композицией: равносторонние тройки в удаляемых вершинах совмещаются ортогональным преобразованием. Обратное направление следует из Теоремы 4: три соединяющих ребра образуют нетривиальный 3-разрез, а его канонические замыкания изоморфны H и G.'
+    doc.add_heading('6. Strengthening of Composition Results', level=1)
+    add_theorem(doc, 'Corollary 5. Reversibility of injection.', 'Let H▷G be obtained by injecting cubic graph H into a vertex of cubic graph G. Then H▷G has an S²-flow if and only if both H and G have S²-flows.', [
+        'The forward direction coincides with the known composition: equilateral triples at the removed vertices are matched by an orthogonal transformation. The reverse direction follows from Theorem 4: the three connecting edges form a non-trivial 3-cut whose canonical closures are isomorphic to H and G.'
     ])
-    add_theorem(doc, 'Следствие 6. Инвариантность раздувания вершины в треугольник.', 'Пусть G△ получен из кубического графа G заменой вершины треугольником, каждая вершина которого наследует одно внешнее ребро. Тогда G△ имеет S²-поток тогда и только тогда, когда G имеет S²-поток.', [
-        'Граф G△ является инъекцией K₄ в соответствующую вершину G. Граф K₄ имеет S²-поток. Прямое направление следует из композиции, обратное - из Следствия 5. Таким образом, известное сохранение при раздувании усиливается до эквивалентности.'
+    add_theorem(doc, 'Corollary 6. Invariance under vertex blow-up into a triangle.', 'Let G△ be obtained from cubic graph G by replacing a vertex with a triangle, each vertex of which inherits one external edge. Then G△ has an S²-flow if and only if G has an S²-flow.', [
+        'The graph G△ is the injection of K₄ into the corresponding vertex of G. The graph K₄ has an S²-flow. The forward direction follows from composition; the reverse from Corollary 5. Thus the known preservation under blow-up is strengthened to an equivalence.'
     ])
 
-    doc.add_heading('7. Полный конструктивный частный случай', level=1)
-    add_theorem(doc, 'Теорема 7. Все 3-рёберно раскрашиваемые кубические графы.', 'Каждый кубический граф с правильной 3-рёберной раскраской допускает S²-поток, причём поток строится явно за полиномиальное время после получения раскраски.', [
-        'Пусть M₁,M₂,M₃ - три цветовых класса. Для i=1,2,3 положим Hᵢ=E(G)\\Mᵢ. В каждой вершине ровно два ребра Hᵢ, поэтому Hᵢ является 2-фактором, то есть дизъюнктным объединением циклов. Ориентируем каждый цикл каждого Hᵢ произвольно.',
-        'Зафиксируем глобальную ориентацию рёбер G. Для ребра e определим σᵢ(e)=0, если e∉Hᵢ; σᵢ(e)=1, если ориентация e в Hᵢ совпадает с глобальной; и σᵢ(e)=-1 в противном случае. Каждый столбец σᵢ является скалярной циркуляцией, поскольку он является суммой ориентированных циклов.',
-        'Определим φ(e)=(σ₁(e),σ₂(e),σ₃(e))/√2. Координатно закон Кирхгофа выполняется. Каждое ребро принадлежит ровно двум из H₁,H₂,H₃, поэтому в φ(e) ровно две координаты равны ±1/√2, а третья равна нулю. Следовательно, ||φ(e)||²=(1+1)/2=1.'
+    doc.add_heading('7. Complete Constructive Special Case', level=1)
+    add_theorem(doc, 'Theorem 7. All 3-edge-colourable cubic graphs.', 'Every cubic graph with a proper 3-edge-colouring admits an S²-flow, and the flow is constructed explicitly in polynomial time once the colouring is given.', [
+        'Let M₁,M₂,M₃ be the three colour classes. For i=1,2,3 set Hᵢ=E(G)\\Mᵢ. At every vertex exactly two edges of Hᵢ are present, so Hᵢ is a 2-factor, i.e. a disjoint union of cycles. Orient each cycle of each Hᵢ arbitrarily.',
+        'Fix a global orientation of the edges of G. For edge e define σᵢ(e)=0 if e∉Hᵢ; σᵢ(e)=1 if the orientation of e in Hᵢ agrees with the global one; and σᵢ(e)=-1 otherwise. Each column σᵢ is a scalar circulation, being a sum of oriented cycles.',
+        'Define φ(e)=(σ₁(e),σ₂(e),σ₃(e))/√2. Kirchhoff law holds coordinatewise. Each edge belongs to exactly two of H₁,H₂,H₃, so φ(e) has exactly two coordinates equal to ±1/√2 and the third equal to zero. Hence ||φ(e)||²=(1+1)/2=1.'
     ])
-    add_body(doc, 'Следствие 7.1. Каждый планарный бесмостовый кубический граф имеет S²-поток. По теореме Тэйта, эквивалентной теореме о четырёх красках, такой граф имеет правильную 3-рёберную раскраску; затем применяется Теорема 7.')
-    add_body(doc, 'Следствие 7.2. Каждый кубический граф нечётности 0 имеет S²-поток. Чётный 2-фактор раскрашивается попеременно двумя цветами, а дополнительное совершенное паросочетание получает третий цвет.')
+    add_body(doc, 'Corollary 7.1. Every planar bridgeless cubic graph has an S²-flow. By Tait\'s theorem, equivalent to the four-colour theorem, such a graph has a proper 3-edge-colouring; Theorem 7 then applies.')
+    add_body(doc, 'Corollary 7.2. Every cubic graph of oddness 0 has an S²-flow. An even 2-factor is 2-edge-coloured alternately, and the complementary perfect matching receives the third colour.')
 
-    doc.add_heading('8. Новый рекурсивный бесконечный класс', level=1)
-    add_theorem(doc, 'Теорема 8. Класс атомов и малых сумм.', 'Пусть 𝒞 - наименьший класс кубических графов, содержащий все 3-рёберно раскрашиваемые кубические графы и известное семейство quasi-Petersen Gₐ,ᵦ,ₚ при p/6<a,b<p/2, и замкнутый относительно 2-рёберной суммы и инъекции по вершине. Тогда каждый граф из 𝒞 имеет S²-поток.', [
-        'Базовые 3-рёберно раскрашиваемые графы покрываются Теоремой 7. Семейство quasi-Petersen имеет равноугловую S²-иммерсию по Proposition 2 работы Houdrouge, Miraftab и Morin, следовательно имеет S²-поток.',
-        'Индукционный шаг по 2-рёберной сумме следует из достаточности Теоремы 3. Индукционный шаг по инъекции следует из достаточности Теоремы 4. Поэтому любое конечное дерево таких операций сохраняет существование S²-потока.'
+    doc.add_heading('8. New Recursive Infinite Class', level=1)
+    add_theorem(doc, 'Theorem 8. Class of atoms and small sums.', 'Let 𝒞 be the smallest class of cubic graphs containing all 3-edge-colourable cubic graphs and the known quasi-Petersen family Gₐ,ᵦ,ₚ for p/6<a,b<p/2, and closed under 2-edge sums and vertex injection. Then every graph in 𝒞 has an S²-flow.', [
+        'The base 3-edge-colourable graphs are covered by Theorem 7. The quasi-Petersen family has an equiangular S²-immersion by Proposition 2 of Houdrouge, Miraftab, and Morin, and therefore has an S²-flow.',
+        'The inductive step for 2-edge sums follows from the sufficiency direction of Theorem 3. The inductive step for vertex injection follows from the sufficiency direction of Theorem 4. Hence any finite tree of such operations preserves the existence of an S²-flow.'
     ])
-    add_body(doc, 'Класс 𝒞 содержит, в частности, все итерационные раздувания вершин в треугольники, все композиции Petersen/quasi-Petersen блоков с 3-рёберно раскрашиваемыми блоками, а также графы с произвольным деревом нетривиальных 2- и 3-разрезов, если каждый атом дерева принадлежит базовому классу.')
+    add_body(doc, 'The class 𝒞 contains in particular all iterated vertex blow-ups into triangles, all compositions of Petersen/quasi-Petersen blocks with 3-edge-colourable blocks, and graphs whose non-trivial 2- and 3-cut tree has every atom in the base class.')
 
-    doc.add_heading('9. Структура минимального контрпримера', level=1)
-    add_theorem(doc, 'Теорема 9. Редукция минимального контрпримера.', 'Если S²-flow conjecture ложна и G является контрпримером с минимальным числом вершин среди бесмостовых кубических графов, то G не имеет 2-рёберных разрезов, не имеет нетривиальных 3-рёберных разрезов и не содержит треугольников. В частности, G циклически 4-рёберно связен и имеет обхват не менее 4.', [
-        'Если существует нетривиальный 2-разрез, обе канонические стороны меньше G и бесмостовы. По минимальности они имеют S²-потоки, а Теорема 3 склеивает их в поток на G, противоречие.',
-        'Если существует нетривиальный 3-разрез, обе стороны после добавления новой вершины меньше G и бесмостовы. По минимальности они имеют потоки, а Теорема 4 снова даёт противоречие. Следовательно, разрез менее четырёх рёбер не может разделять две циклические части.',
-        'Пусть G содержит треугольник. После уже доказанного отсутствия 2-разрезов три внешних соседа треугольника различны. Сожмём треугольник в одну кубическую вершину и получим меньший бесмостовый кубический граф G₀. По минимальности G₀ имеет S²-поток. По инвариантности triangle blow-up исходный G также имеет поток, противоречие.'
+    doc.add_heading('9. Structure of the Minimal Counterexample', level=1)
+    add_theorem(doc, 'Theorem 9. Minimal counterexample reduction.', 'If the S²-flow conjecture is false and G is a counterexample with the minimum number of vertices among bridgeless cubic graphs, then G has no 2-edge cuts, no non-trivial 3-edge cuts, and contains no triangles. In particular, G is cyclically 4-edge-connected and has girth at least 4.', [
+        'If a non-trivial 2-cut exists, both canonical sides are smaller than G and bridgeless. By minimality they have S²-flows, and Theorem 3 glues them into a flow on G, a contradiction.',
+        'If a non-trivial 3-cut exists, both sides after adding a new vertex are smaller than G and bridgeless. By minimality they have flows, and Theorem 4 again gives a contradiction. Hence no cut of fewer than four edges can separate two cyclic parts.',
+        'Suppose G contains a triangle. Since 2-cuts are already ruled out, the three external neighbours of the triangle are distinct. Contract the triangle to a single cubic vertex to obtain a smaller bridgeless cubic graph G₀. By minimality G₀ has an S²-flow. By the triangle blow-up invariance the original G also has a flow, a contradiction.'
     ])
-    add_body(doc, 'Замечание. Полученная редукция не доказывает гипотезу, но исключает все «составные» препятствия и переносит поиск на циклически 4-рёберно связные треугольник-свободные атомы. Для строгого определения snark с обхватом не менее 5 остаётся отдельно устранить 4-циклы; универсальная 4-cycle reduction в данной работе не доказана.')
+    add_body(doc, 'Remark. The reduction obtained does not prove the conjecture, but it eliminates all composite obstacles and shifts the search to cyclically 4-edge-connected triangle-free atoms. To qualify as a snark of girth at least 5, 4-cycles must be eliminated separately; a universal 4-cycle reduction is not proved in this work.')
 
-    doc.add_heading('10. Алгебраическая структурная лемма', level=1)
-    add_theorem(doc, 'Лемма 10. Rank-3 Gram compression.', 'Пусть B - ориентированная матрица инцидентности, Z - матрица, столбцы которой образуют базис ker B, и zₑ - строка Z для ребра e. Если существует Q⪰0 с rank Q≤3 и zₑQzₑᵀ=1 для каждого e, то G имеет S²-поток.', [
-        'Разложим Q=AAᵀ, где A имеет не более трёх столбцов; при необходимости дополним нулевыми столбцами до трёх. Положим X=ZA. Тогда BX=BZA=0, поскольку BZ=0. Для каждой строки xₑ имеем ||xₑ||²=zₑAAᵀzₑᵀ=zₑQzₑᵀ=1. Следовательно, строки X задают S²-поток.'
+    doc.add_heading('10. Algebraic Structural Lemma', level=1)
+    add_theorem(doc, 'Lemma 10. Rank-3 Gram compression.', 'Let B be the oriented incidence matrix, Z a matrix whose columns form a basis of ker B, and zₑ the row of Z for edge e. If there exists Q⪰0 with rank Q≤3 and zₑQzₑᵀ=1 for every e, then G has an S²-flow.', [
+        'Factor Q=AAᵀ, where A has at most three columns; pad with zero columns to three if necessary. Set X=ZA. Then BX=BZA=0 since BZ=0. For each row xₑ we have ||xₑ||²=zₑAAᵀzₑᵀ=zₑQzₑᵀ=1. Hence the rows of X define an S²-flow.'
     ])
-    add_body(doc, 'Эта лемма разделяет задачу на выпуклую часть Q⪰0 с линейными диагональными ограничениями и невыпуклое условие rank Q≤3. Код проверяет такие сертификаты независимо от нелинейного оптимизатора.')
+    add_body(doc, 'This lemma separates the problem into a convex part Q⪰0 with linear diagonal constraints and the non-convex condition rank Q≤3. The code verifies such certificates independently of the nonlinear solver.')
 
-    doc.add_heading('11. Масштабная воспроизводимая проверка', level=1)
-    add_body(doc, f"Проведена детерминированная кампания на {campaign['instances']} графах: 270 случайных бесмостовых кубических графов порядков 10, 12, 14, 16, 18, 20, 24, 30 и 40, по 30 графов каждого порядка, а также 18 именованных и параметрических графов. Seed: {campaign['config']['seed']}.")
-    add_body(doc, f"Получено {campaign['exact_constructive_certificates']} точных конструктивных сертификатов из 3-рёберных раскрасок и {campaign['nonlinear_certificates']} численных rank-3 сертификатов для нераскрашиваемых или специально выбранных графов. Независимая повторная проверка прочитала все NPZ-сертификаты заново и подтвердила {campaign['valid_certificates']} из {campaign['instances']}.")
-    add_body(doc, f"Максимальная ошибка закона Кирхгофа: {campaign['maximum_conservation_residual']:.3e}. Максимальная ошибка единичной нормы среди численных решений: {campaign['maximum_unit_norm_residual']:.3e}. Для численных сертификатов применён независимый порог 10⁻⁷; конструктивные сертификаты имеют ошибки порядка машинного округления.")
+    doc.add_heading('11. Large-Scale Reproducible Verification', level=1)
+    add_body(doc, f"A deterministic campaign was run on {campaign['instances']} graphs: 270 random bridgeless cubic graphs of orders 10, 12, 14, 16, 18, 20, 24, 30 and 40, 30 graphs of each order, together with 18 named and parametric graphs. Seed: {campaign['config']['seed']}.")
+    add_body(doc, f"Obtained {campaign['exact_constructive_certificates']} exact constructive certificates from 3-edge-colourings and {campaign['nonlinear_certificates']} numerical rank-3 certificates for non-3-edge-colourable or specially chosen graphs. Independent re-verification read all NPZ certificates afresh and confirmed {campaign['valid_certificates']} out of {campaign['instances']}.")
+    add_body(doc, f"Maximum Kirchhoff-law residual: {campaign['maximum_conservation_residual']:.3e}. Maximum unit-norm residual among numerical solutions: {campaign['maximum_unit_norm_residual']:.3e}. An independent threshold of 10⁻⁷ is applied for numerical certificates; constructive certificates have errors of the order of machine rounding.")
     doc.add_picture(str(cert_fig), width=Inches(5.8))
-    p = doc.add_paragraph('Рисунок 2. Распределение типов сертификатов.')
+    p = doc.add_paragraph('Figure 2. Distribution of certificate types.')
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.runs[0].italic = True
     doc.add_picture(str(residual_fig), width=Inches(6.5))
-    p = doc.add_paragraph('Рисунок 3. Ошибки нормы для восьми нелинейных сертификатов.')
+    p = doc.add_paragraph('Figure 3. Norm errors for the eight nonlinear certificates.')
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.runs[0].italic = True
 
     table = doc.add_table(rows=1, cols=6)
     table.style = 'Table Grid'
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    headers = ['Граф', '|V|', '3-раскраска', 'Метод', 'Ошибка баланса', 'Ошибка нормы']
+    headers = ['Graph', '|V|', '3-colouring', 'Method', 'Balance error', 'Norm error']
     for i, h in enumerate(headers):
         set_cell_text(table.rows[0].cells[i], h, bold=True, size=8)
         shade_cell(table.rows[0].cells[i], 'D9EAF7')
@@ -369,40 +369,40 @@ def build_doc() -> None:
             set_cell_text(cells[i], value, size=7.5)
 
     doc.add_heading('12. Reproducibility', level=1)
-    add_body(doc, 'Основной запуск:')
+    add_body(doc, 'Main run:')
     code = doc.add_paragraph()
     code.style = doc.styles['Normal']
     run = code.add_run('python scripts/massive_verification.py --orders 10 12 14 16 18 20 24 30 40 --samples-per-order 30 --nonlinear-restarts 16 --output-dir results/massive_run')
     run.font.name = 'Courier New'
     run.font.size = Pt(8.5)
-    add_body(doc, 'Независимая проверка сохранённых сертификатов:')
+    add_body(doc, 'Independent verification of stored certificates:')
     code = doc.add_paragraph()
     run = code.add_run('python scripts/verify_campaign.py results/massive_run --tolerance 1e-7')
     run.font.name = 'Courier New'
     run.font.size = Pt(8.5)
-    add_body(doc, 'Для исчерпывающих потоков graph6 из nauty предусмотрен streaming-скрипт:')
+    add_body(doc, 'For exhaustive graph6 flows from nauty a streaming script is provided:')
     code = doc.add_paragraph()
     run = code.add_run('geng -c -d3 -D3 16 | python scripts/nauty_cubic_campaign.py --output-dir results/geng16')
     run.font.name = 'Courier New'
     run.font.size = Pt(8.5)
-    add_body(doc, 'Каждый сертификат содержит graph6-представление графа, стабильный порядок рёбер и матрицу X. Проверяющий скрипт заново строит матрицу инцидентности и вычисляет BX, нормы строк и ранг Gram-матрицы. Успех конечной проверки не является доказательством бесконечного утверждения.')
+    add_body(doc, 'Each certificate contains the graph6 representation of the graph, a stable edge ordering, and the matrix X. The verifier rebuilds the incidence matrix and computes BX, row norms, and the rank of the Gram matrix. A successful finite verification is not a proof of an infinite statement.')
 
-    doc.add_heading('13. Ограничения и следующий доказательный барьер', level=1)
+    doc.add_heading('13. Limitations and the Next Proof Barrier', level=1)
     limitations = [
-        'Полная гипотеза не доказана.',
-        'Точные теоремы по разрезам сводят проблему к циклически 4-рёберно связным атомам, но не решают эти атомы.',
-        'Численные решения для снарков являются проверяемыми приближёнными сертификатами, а не символьными доказательствами существования для бесконечного семейства.',
-        'Не получена универсальная редукция 4-цикла, которая позволила бы автоматически повысить обхват минимального контрпримера до 5.',
-        'Точный мировой приоритет факторизационных формулировок должен быть подтверждён независимым библиографическим обзором и рецензированием.'
+        'The full conjecture is not proved.',
+        'The exact cut theorems reduce the problem to cyclically 4-edge-connected atoms, but do not resolve those atoms.',
+        'Numerical solutions for snarks are verifiable approximate certificates, not symbolic existence proofs for an infinite family.',
+        'A universal 4-cycle reduction that would automatically raise the girth of the minimal counterexample to 5 has not been obtained.',
+        'The exact world priority of the factorization formulations must be confirmed by independent bibliographic review and peer review.'
     ]
     for item in limitations:
         p = doc.add_paragraph(style='List Bullet')
         p.add_run(item)
 
-    doc.add_heading('14. Вывод', level=1)
-    add_body(doc, 'Получены полные доказательства нескольких содержательных частных результатов. Наиболее сильное структурное продвижение состоит в точной двусторонней факторизации S²-потоков по 2- и 3-рёберным разрезам. Она превращает композиционные конструкции в теорему разложения, усиливает triangle blow-up до эквивалентности и показывает, что минимальный контрпример должен быть атомарным. Конструктивная теорема для всех 3-рёберно раскрашиваемых кубических графов покрывает планарный случай и даёт точные машинно проверяемые сертификаты. Открытым ядром остаются циклически 4-рёберно связные нераскрашиваемые кубические графы.')
+    doc.add_heading('14. Conclusion', level=1)
+    add_body(doc, 'Complete proofs of several substantial partial results have been obtained. The strongest structural advance is the exact two-directional factorization of S²-flows at 2- and 3-edge cuts. It converts composition constructions into a decomposition theorem, strengthens triangle blow-up to an equivalence, and shows that a minimal counterexample must be atomic. The constructive theorem for all 3-edge-colourable cubic graphs covers the planar case and yields exact machine-verifiable certificates. The open core remains the cyclically 4-edge-connected non-3-edge-colourable cubic graphs.')
 
-    doc.add_heading('Литература', level=1)
+    doc.add_heading('References', level=1)
     refs = [
         'H. Houdrouge, B. Miraftab, P. Morin. 2-Dimensional Unit Vector Flows. arXiv:2602.21526, 2026.',
         'D. Mattiolo, G. Mazzuoccolo, J. Rajník, G. Tabarelli. On d-dimensional nowhere-zero r-flows on a graph. European Journal of Mathematics 9, Article 101, 2023. DOI: 10.1007/s40879-023-00694-1.',
@@ -415,7 +415,7 @@ def build_doc() -> None:
         p = doc.add_paragraph(style='List Number')
         p.add_run(ref)
 
-    doc.core_properties.title = 'Новые частные теоремы и структурные леммы для S²-потоков'
+    doc.core_properties.title = 'New partial theorems and structural lemmas for S²-flows'
     doc.core_properties.subject = 'S2-flow conjecture, cubic graphs, structural decomposition, reproducibility'
     doc.core_properties.author = 'Research synthesis'
     doc.save(OUT)
