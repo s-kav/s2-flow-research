@@ -27,8 +27,8 @@ def make_figures() -> tuple[Path, Path, Path]:
     ax.axis('off')
     ax.set_xlim(0.0, 1.0)
     ax.set_ylim(0.0, 1.0)
-    ax.text(0.25, 0.93, '2-рёберный разрез', ha='center', va='center', fontsize=13, fontweight='bold')
-    ax.text(0.75, 0.93, '3-рёберный разрез', ha='center', va='center', fontsize=13, fontweight='bold')
+    ax.text(0.25, 0.93, '2-rib incision', ha='center', va='center', fontsize=13, fontweight='bold')
+    ax.text(0.75, 0.93, '3-rib incision', ha='center', va='center', fontsize=13, fontweight='bold')
 
     # Two-cut panel.
     ax.add_patch(plt.Circle((0.12, 0.55), 0.09, fill=False, linewidth=1.5))
@@ -37,9 +37,9 @@ def make_figures() -> tuple[Path, Path, Path]:
     ax.plot([0.20, 0.30], [0.50, 0.50], linewidth=1.5)
     ax.text(0.12, 0.55, 'A', ha='center', va='center', fontsize=12)
     ax.text(0.38, 0.55, 'B', ha='center', va='center', fontsize=12)
-    ax.text(0.25, 0.37, 'граничные векторы: p и -p', ha='center', fontsize=10)
+    ax.text(0.25, 0.37, 'boundary vectors: p and -p', ha='center', fontsize=10)
     ax.annotate('', xy=(0.19, 0.20), xytext=(0.31, 0.20), arrowprops={'arrowstyle': '<->'})
-    ax.text(0.25, 0.12, 'замыкание каждой стороны одним ребром', ha='center', fontsize=9)
+    ax.text(0.25, 0.12, 'closing each side with one edge', ha='center', fontsize=9)
 
     # Three-cut panel.
     ax.add_patch(plt.Circle((0.62, 0.55), 0.09, fill=False, linewidth=1.5))
@@ -50,7 +50,7 @@ def make_figures() -> tuple[Path, Path, Path]:
     ax.text(0.88, 0.55, 'B', ha='center', va='center', fontsize=12)
     ax.text(0.75, 0.34, 'p₁+p₂+p₃=0,  pᵢ·pⱼ=-1/2', ha='center', fontsize=10)
     ax.annotate('', xy=(0.69, 0.20), xytext=(0.81, 0.20), arrowprops={'arrowstyle': '<->'})
-    ax.text(0.75, 0.12, 'замыкание каждой стороны новой кубической вершиной', ha='center', fontsize=9)
+    ax.text(0.75, 0.12, 'closing each side with a new cubic vertex', ha='center', fontsize=9)
     fig.tight_layout()
     cut_path = ASSETS / 'cut_factorization.png'
     fig.savefig(cut_path, dpi=220, bbox_inches='tight')
@@ -59,11 +59,11 @@ def make_figures() -> tuple[Path, Path, Path]:
     df = pd.read_csv(RESULTS / 'summary.csv')
     counts = df['method'].value_counts()
     fig, ax = plt.subplots(figsize=(7.2, 4.5))
-    labels = ['Точная конструкция\nиз 3-раскраски', 'Нелинейный поиск\nв пространстве циклов']
+    labels = [''Exact Construction\nfrom 3-Coloring', 'Nonlinear Search\nin the Space of Cycles'']
     values = [int(counts.get('exact_three_edge_colouring_construction', 0)), int(counts.get('cycle_space_nonlinear_least_squares', 0))]
     bars = ax.bar(labels, values)
-    ax.set_ylabel('Количество графов')
-    ax.set_title('Типы сертификатов в воспроизводимой кампании')
+    ax.set_ylabel('Number of graphs')
+    ax.set_title('Types of certificates in a reproducible campaign')
     ax.grid(axis='y', alpha=0.25)
     for bar, value in zip(bars, values):
         ax.text(bar.get_x() + bar.get_width()/2, value + max(values)*0.015, str(value), ha='center', va='bottom', fontsize=11)
@@ -78,8 +78,8 @@ def make_figures() -> tuple[Path, Path, Path]:
     ax.set_yscale('log')
     ax.set_xticks(range(len(nonlinear)))
     ax.set_xticklabels(nonlinear['name'], rotation=35, ha='right', fontsize=8)
-    ax.set_ylabel('Максимальная ошибка нормы')
-    ax.set_title('Независимо проверенные численные сертификаты')
+    ax.set_ylabel('Maximum error of the norm')
+    ax.set_title('Independently verified numerical certificates')
     ax.grid(axis='y', alpha=0.25)
     fig.tight_layout()
     residual_path = ASSETS / 'nonlinear_residuals.png'
@@ -158,7 +158,7 @@ def add_theorem(doc: Document, title: str, statement: str, proof_paragraphs: lis
     statement_p = add_body(doc, statement)
     statement_p.paragraph_format.keep_with_next = True
     p = doc.add_paragraph()
-    r = p.add_run('Доказательство.')
+    r = p.add_run('Proof.')
     r.bold = True
     r.font.name = 'Arial'
     r.font.size = Pt(10.5)
@@ -199,7 +199,7 @@ def build_doc() -> None:
         styles[style_name].font.color.rgb = RGBColor(31, 55, 77)
 
     header = sec.header.paragraphs[0]
-    header.text = 'S²-потоки на бесмостовых кубических графах'
+    header.text = 'S²-flows on bridgeless cubic graphs'
     header.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     for run in header.runs:
         run.font.name = 'Arial'
@@ -209,16 +209,16 @@ def build_doc() -> None:
 
     title = doc.add_paragraph(style='Title')
     title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    title.add_run('Новые частные теоремы и структурные леммы\nдля S²-потоков')
+    title.add_run('New partial theorems and structural lemmas\nfor S²-flows')
     subtitle = doc.add_paragraph()
     subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = subtitle.add_run('Полные доказательства, границы новизны и воспроизводимые вычислительные проверки')
+    r = subtitle.add_run('Complete proofs, boundaries of novelty, and reproducible computational tests')
     r.italic = True
     r.font.name = 'Arial'
     r.font.size = Pt(11)
     date_p = doc.add_paragraph()
     date_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    rr = date_p.add_run('Состояние литературы и вычислений: 18 июля 2026 года')
+    rr = date_p.add_run('State of the art and computation: July 22, 2026')
     rr.font.name = 'Arial'
     rr.font.size = Pt(9)
     doc.add_paragraph()
@@ -227,28 +227,28 @@ def build_doc() -> None:
     box.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell = box.cell(0, 0)
     shade_cell(cell, 'EAF2F8')
-    set_cell_text(cell, 'Главный результат документа: полная S²-flow conjecture не доказана. Получены и строго доказаны новые для данного проекта факторизационные теоремы, конструктивные частные случаи и редукции минимального контрпримера. Заявление о мировой научной новизне требует рецензирования и дополнительного библиографического поиска.', bold=True, size=10)
+    set_cell_text(cell, 'The main result of the paper: the complete S²-flow conjecture is not proven. Factorization theorems, constructive special cases, and reductions of the minimal counterexample, new to this project, are obtained and rigorously proven. The claim of world scientific novelty requires peer review and additional bibliographic research..', bold=True, size=10)
 
-    doc.add_heading('1. Резюме результатов', level=1)
+    doc.add_heading('1. Summary of results', level=1)
     summary_items = [
-        'Точный закон разреза: сумма подписанных векторов на любом рёберном разрезе равна нулю.',
-        'Жёсткость малых разрезов: на 2-разрезе векторы антиподальны; на 3-разрезе они образуют равностороннюю тройку с попарными скалярными произведениями -1/2.',
-        'Точная факторизация по 2-рёберному разрезу: граф имеет S²-поток тогда и только тогда, когда обе канонически замкнутые стороны имеют S²-потоки.',
-        'Точная факторизация по нетривиальному 3-рёберному разрезу с тем же условием «тогда и только тогда».',
-        'Инъекция одного кубического графа в вершину другого допускает обратное сокращение. Раздувание вершины в треугольник сохраняет S²-поток в обе стороны.',
-        'Каждый 3-рёберно раскрашиваемый кубический граф имеет явный S²-поток, построенный из трёх ориентированных 2-факторов.',
-        'Каждый планарный бесмостовый кубический граф имеет S²-поток как следствие теоремы о четырёх красках и конструкции из 3-рёберной раскраски.',
-        'Минимальный контрпример, если он существует, должен быть циклически 4-рёберно связным и не содержать треугольников.',
-        'Построен воспроизводимый код, давший 288 из 288 независимо проверенных конечных сертификатов.'
+        'Exact cut law: the sum of signed vectors on any edge cut is zero.'
+        'Small cut rigidity: on a 2-cut, vectors are antipodal; on a 3-cut, they form an equilateral triple with pairwise scalar products of -1/2.'
+        'Exact factorization by a 2-edge cut: a graph has an S²-flow if and only if both canonically closed sides have S²-flows.'
+        'Exact factorization by a nontrivial 3-edge cut with the same "if and only if" condition.'
+        'The injection of one cubic graph into a vertex of another admits the reverse reduction. Inflating a vertex into a triangle preserves the S²-flow in both directions.'
+        'Every 3-edge-colorable cubic graph has an explicit S²-flow constructed from three directed 2-factors.'
+        'Every planar bridgeless cubic graph has an S²-flow as a consequence of the four-color theorem and the construction from a 3-edge-coloring.'
+        'A minimal counterexample, if it exists, must be cyclically 4-edge-connected and triangle-free.'
+        'A reproducible code was constructed that yielded 288 of 288 independently verified finite certificates.'
     ]
     for item in summary_items:
         p = doc.add_paragraph(style='List Bullet')
         p.add_run(item)
 
-    doc.add_heading('2. Исходная постановка и статус открытой проблемы', level=1)
-    add_body(doc, 'Пусть G=(V,E) - конечный ориентированный граф. S²-потоком называется отображение φ:E→R³, для которого ||φ(e)||₂=1 на каждом ребре и выполняется закон Кирхгофа в каждой вершине. Изменение ориентации ребра сопровождается заменой φ(e) на -φ(e).')
-    add_equation(doc, 'Σₑ ε(v,e) φ(e) = 0  для каждого v∈V,     ||φ(e)||₂ = 1  для каждого e∈E.')
-    add_body(doc, 'Гипотеза Джайна утверждает, что каждый бесмостовый граф, а эквивалентно каждый бесмостовый кубический граф, допускает такой поток. По состоянию на июль 2026 года гипотеза остаётся открытой. Работа Houdrouge, Miraftab и Morin (2026) дала геометрическую эквивалентность через равноугловые сферические иммерсии, одностороннюю теорему композиции, сохранение при раздувании вершины в треугольник и явные семейства quasi-Petersen. Работа Mattiolo и соавторов (2023) фиксирует общий многомерный контекст и известную универсальную оценку в более высокой размерности.')
+    doc.add_heading('2. Initial Statement and Status of the Open Problem', level=1)
+    add_body(doc, 'Let G=(V,E) be a finite directed graph. An S²-flow is a mapping φ:E→R³ such that ||φ(e)||₂=1 on each edge and Kirchhoff's law holds at each vertex. Changing the edge orientation is accompanied by replacing φ(e) with -φ(e).')
+    add_equation(doc, 'Σₑ ε(v,e) φ(e) = 0 for every v∈V, ||φ(e)||₂ = 1 for every e∈E.')
+    add_body(doc, 'Jains conjecture states that every bridgeless graph, and equivalently every bridgeless cubic graph, admits such a flow. As of July As of 2026, the conjecture remains open. Houdrouge, Miraftab, and Morin (2026) provided a geometric equivalence via equiangular spherical immersions, a one-sided composition theorem, preservation under triangle inflation, and explicit quasi-Petersen families. Mattiolo et al. (2023) captures the general higher-dimensional context and a known universal bound in higher dimensions.')
 
     doc.add_heading('3. Статус новизны', level=1)
     table = doc.add_table(rows=1, cols=3)
