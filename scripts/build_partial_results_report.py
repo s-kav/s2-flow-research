@@ -246,7 +246,7 @@ def build_doc() -> None:
         p.add_run(item)
 
     doc.add_heading('2. Initial Statement and Status of the Open Problem', level=1)
-    add_body(doc, 'Let G=(V,E) be a finite directed graph. An S²-flow is a mapping φ:E→R³ such that ||φ(e)||₂=1 on each edge and Kirchhoff's law holds at each vertex. Changing the edge orientation is accompanied by replacing φ(e) with -φ(e).')
+    add_body(doc, 'Let G=(V,E) be a finite directed graph. An S²-flow is a mapping φ:E→R³ such that ||φ(e)||₂=1 on each edge and Kirchhoff"s law holds at each vertex. Changing the edge orientation is accompanied by replacing φ(e) with -φ(e).')
     add_equation(doc, 'Σₑ ε(v,e) φ(e) = 0 for every v∈V, ||φ(e)||₂ = 1 for every e∈E.')
     add_body(doc, 'Jains conjecture states that every bridgeless graph, and equivalently every bridgeless cubic graph, admits such a flow. As of July As of 2026, the conjecture remains open. Houdrouge, Miraftab, and Morin (2026) provided a geometric equivalence via equiangular spherical immersions, a one-sided composition theorem, preservation under triangle inflation, and explicit quasi-Petersen families. Mattiolo et al. (2023) captures the general higher-dimensional context and a known universal bound in higher dimensions.')
 
